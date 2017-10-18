@@ -1,0 +1,130 @@
+/* Dracula Theme v1.2.5
+ *
+ * https://github.com/dracula/highlightjs
+ *
+ * Copyright 2016-present, All rights reserved
+ *
+ * Code licensed under the MIT license
+ *
+ * @author Denis Ciccale <dciccale@gmail.com>
+ * @author Zeno Rocha <hi@zenorocha.com>
+ */
+
+pre {
+  margin: 10px 0 !important;
+  display: block !important;
+  overflow-x: auto;
+  padding: 0.5em !important;
+  background: #2c3e50 !important;
+  color: #fff !important;
+  opacity: .99;
+  font-size: 14px !important;
+}
+[data-dpr="2"] pre {
+  font-size: 28px !important;
+}
+[data-dpr="3"] pre {
+  font-size: 42 !important;
+}
+pre code {
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+h1 pre, h2 pre, h3 pre, h4 pre, h5 pre, h6 pre{
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+code {
+  word-break: keep-all;
+  opacity: .99;
+  padding: 0 5px !important;
+  background-color: #eae7eb !important;
+  font-family: Monaco, Consolas, Menlo, monospace, Arial, 'Microsoft YaHei' !important;
+}
+thead {
+  border-bottom: 2px solid #cccccc !important;
+}
+table {
+  /* 设置fixed 布局必须要给定table宽度 */
+  margin: 20px 0 5px 0 !important;
+  /*border: 1px solid #ddd !important;*/
+  table-layout: fixed !important;
+  width: 100% !important;
+}
+tr {
+  /*border: 1px solid #eee !important;*/
+}
+td, th {
+  border: 1px solid #ccc !important;
+  padding: 8px !important;
+}
+tbody > tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+th > code, td > code {
+  word-wrap: break-word !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  background-color: transparent !important;
+  color: inherit !important;
+}
+.hljs-built_in,
+.hljs-selector-tag,
+.hljs-section,
+.hljs-link {
+  color: #8be9fd !important;
+}
+
+.hljs-keyword {
+  color: #ff79c6 !important;
+}
+
+.hljs,
+.hljs-subst {
+  color: #f8f8f2 !important;
+}
+
+.hljs-title {
+  color: #50fa7b !important;
+}
+
+.hljs-string,
+.hljs-meta,
+.hljs-name,
+.hljs-type,
+.hljs-attribute,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #f1fa8c !important;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion {
+  color: #6272a4 !important;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-title,
+.hljs-section,
+.hljs-doctag,
+.hljs-type,
+.hljs-name,
+.hljs-strong {
+  font-weight: bold !important;
+}
+
+.hljs-literal,
+.hljs-number {
+  color: #bd93f9 !important;
+}
+
+.hljs-emphasis {
+  font-style: italic !important;
+}

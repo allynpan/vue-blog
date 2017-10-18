@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html style="width: 100%; height: 100%;">
+  <head>
+    <meta charset="utf-8">
+    <title>m-blog</title>
+    <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_432883_ptzounid4r71fw29.css">
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+    <script>
+      (function () {
+        // firefox 低版本不支持innerText 属性
+        if (!!document.getBoxObjectFor || window.mozInnerScreenX != null) {
+          HTMLElement.prototype.__defineSetter__('innerText', function (sText) {
+            var parsedText = document.createTextNode(sText)
+            this.innerHTML = ''
+            this.appendChild(parsedText)
+            return parsedText
+          })
+          HTMLElement.prototype.__defineGetter__('innerText', function () {
+            var r = this.ownerDocument.createRange()
+            r.selectNodeContents(this)
+            return r.toString()
+          })
+        }
+      })()
+    </script>
+  </head>
+  <body style="width: 100%; overflow: hidden; font-family: '微软雅黑'">
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

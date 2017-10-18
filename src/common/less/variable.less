@@ -1,0 +1,308 @@
+
+@text-color-base: #2c3e50;
+
+@text-color-light: rgba(44, 62, 80, 0.51);
+
+@header-height: 60px;
+
+@background-base: #eae7eb;
+
+@background-content: rgba(255, 255, 255, 0.8);
+
+@background-base-dark: #cac7cb;
+
+@content-padding: 200px;
+
+@article-padding: 20px;
+
+@content-width: 800px;
+
+@content-width-l: 1000px;
+
+@highlight-color: #42b983;
+
+@font-size-title: 25px;
+
+@font-size-subtitle: 18px;
+
+@font-size-base: 16px;
+
+@font-size-small: 14px;
+
+@font-size-tiny: 12px;
+
+.text-center {
+  text-align: center;
+}
+// px to rem
+.pr (@property, @sizeValue, @rootSize: 75px) {
+  @{property}: @sizeValue / @rootSize * 1rem
+}
+.font-dpr(@font-size: 16px) {
+  font-size: @font-size;
+  [data-dpr="2"] & {
+    font-size: @font-size * 2;
+  }
+  [data-dpr="3"] & {
+    font-size: @font-size * 3;
+  }
+}
+
+// @ https://github.com/daneden/animate.css/blob/master/animate.css
+@keyframes bounce {
+  from, 20%, 53%, 80%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transform: translate3d(0,0,0);
+  }
+
+  40%, 43% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -20px, 0);
+  }
+
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0,-4px,0);
+  }
+}
+
+// 全局
+.bounce {
+  animation-name: bounce;
+  animation-duration: .75s;
+  transform-origin: center bottom;
+}
+
+.fadeIn () {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      //transform: translate3d(0, 100%, 0);
+    }
+    to {
+      opacity: 1;
+      //transform: translate3d(0, 0, 0);
+    }
+  }
+  animation: fadeIn .3s linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+.fadeOut () {
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      //transform: translate3d(0, 0, 0);
+    }
+    to {
+      opacity: 0;
+      //transform: translate3d(0, 100%, 0);
+    }
+  }
+  animation: fadeOut .5s linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
+.article {
+  line-height: 1.5;
+  margin-top: 20px;
+  padding: @article-padding;
+  position: relative;
+  overflow: hidden;
+  &:last-of-type {
+    margin-bottom: 20px;
+  }
+  .cover {
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    z-index: -9999;
+    //background-color: #fff;
+    background-color: @background-content;
+    //filter: blur(20px) grayscale(30%);
+    background-size: cover;
+    //background-attachment: fixed;
+    //margin: -40px;
+  }
+  header {
+    margin-bottom: 40px;
+    .text-center;
+    h2 {
+      cursor: pointer;
+      font-size: 25px;
+      font-weight: 400;
+      transition: all .3s;
+      &:hover {
+        color: @highlight-color;
+        text-decoration: underline;
+      }
+    }
+    h4 {
+      margin: 20px 0;
+      font-weight: 400;
+      color: @text-color-light;
+      font-size: @font-size-small;
+    }
+    .tag {
+      color: @text-color-light;
+      text-align: center;
+      span {
+        padding: 3px 5px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        margin-right: 5px;
+      }
+    }
+  }
+  footer {
+    cursor: pointer;
+    border-bottom: 1px solid @highlight-color;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 0;
+    &:hover {
+      background-color: @highlight-color;
+      color: #fff;
+    }
+  }
+}
+
+// 全局
+.article-content {
+  h1, h2, h3, h4, h5, h6 {
+    margin: 20px 0 5px 0;
+    font-weight: 200;
+  }
+  li {
+    &>ul {
+      margin-left: @article-padding;
+    }
+  }
+  img {
+    max-width: 100% !important;
+  }
+  a > img {
+    width: 100% !important;
+  }
+  ol, ul {
+    list-style-position: inside;
+  }
+}
+// 全局
+@-moz-document url-prefix() {
+  .article-content {
+    h1, h2, h3, h4, h5, h6 {
+      margin: 20px 0 5px 0;
+      font-weight: 400;
+    }
+  }
+}
+
+// 全局
+.highlight { // 搜索关键字高亮
+  color: @highlight-color;
+}
+
+.article-m {
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  line-height: 1.5;
+  background-color: @background-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /*word-break: break-all;*/
+  .pr(padding-top, @article-padding);
+  .pr(padding-bottom, @article-padding);
+  .pr(padding-left, @article-padding);
+  .pr(padding-right, @article-padding);
+  a {
+    word-break: break-all;
+  }
+  .tag {
+    color: @text-color-light;
+    text-align: center;
+    span {
+      padding: 3px 5px;
+      .pr(padding-left, 5px);
+      .pr(padding-right, 5px);
+      .pr(padding-bottom, 3px);
+      .pr(padding-top, 3px);
+      border: 1px solid #eee;
+      border-radius: 5px;
+      margin-right: 5px;
+    }
+  }
+  &::after {
+    content: '';
+    display: block;
+    .pr(width, 200px);
+    height: 1px;
+    background-color: @background-base;
+    margin: 0 auto;
+    .pr(margin-top, 50px);
+    .pr(margin-bottom, 50px);
+  }
+  header {
+    /*text-align: center;*/
+    h1 {
+      .font-dpr(20px);
+      // color: @highlight-color;
+    }
+    h4 {
+      .font-dpr(14px);
+      .pr(padding-top, 20px);
+      .pr(padding-bottom, 20px);
+      font-weight: normal;
+      color: @text-color-light;
+    }
+  }
+  footer {
+    /*text-align: center;*/
+    div {
+      margin: 0 auto;
+      .font-dpr(16px);
+      cursor: pointer;
+      border-bottom: 1px solid @highlight-color;
+      display: inline-block;
+      margin-top: 10px;
+      padding: 5px 0;
+      &:hover {
+        background-color: @highlight-color;
+        color: #fff;
+      }
+    }
+  }
+}
+
+// 全局
+.article-content-m {
+  .article-content;
+  .font-dpr(16px);
+  h1, h2, h3, h4, h5, h6 {
+    margin: 20px 0 5px 0;
+    .pr(margin-top, 20px);
+    .pr(margin-right, 0);
+    .pr(margin-bottom, 10px);
+    .pr(margin-left, 0);
+    font-weight: normal;
+  }
+}
+
+//全局
+#article-list {
+  .article-content-m {
+    h1, h2, h3, h4, h5, h6 {
+      .font-dpr(18px);
+    }
+  }
+  table {
+    display: none;
+  }
+}
