@@ -117,6 +117,7 @@
             // 最后一个anchor 要单独判断， 因为最后一个anchor 不存在anchor[i + 1]的情况，
             // scrollTop <= anchor[i + 1].offsetTop - 100  会导致下标越界
           if (scrollTop >= scrollHeight - clientHeight || scrollTop >= anchor[anchor.length - 1].offsetTop - 100) {
+            document.getElementsByClassName('active')[0].classList.remove('active')
             titles[titles.length - 1].classList.add('active')
           } else {
             titles[titles.length - 1].classList.remove('active')
