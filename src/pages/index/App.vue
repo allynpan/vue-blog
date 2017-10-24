@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <div id="progress"></div>
     <div id="cover" :style="{backgroundImage: ``}"></div>
     <keep-alive>
       <b-header></b-header>
@@ -48,12 +47,6 @@
     width: 100%;
     position: relative;
     overflow: hidden;
-    #progress {
-      height: 1px;
-      border-radius: 1px;
-      background-color: @highlight-color;
-      width: 0;
-    }
     #cover {
       content: '';
       position: fixed;

@@ -1,6 +1,8 @@
 <template>
   <header id="header">
-    <div class="cover" :style="{backgroundImage: ``}"></div>
+    <div class="cover" :style="{backgroundImage: ``}">
+      <div id="progress"></div>
+    </div>
     <div class="logo" @click="goHome">MINGOF</div>
     <ul class="header-list">
       <router-link tag="li" to="/posts">
@@ -71,6 +73,14 @@
       /*background-attachment: fixed;*/
       /*margin: -40px;*/
       /*background-color: transparent;*/
+      #progress {
+        position: absolute;
+        bottom: 0;
+        height: 1px;
+        border-radius: 1px;
+        background-color: @highlight-color;
+        width: 0;
+      }
     }
     .logo {
       position: absolute;
