@@ -93,27 +93,24 @@
         }.bind(this)
         // set srollBar 和 目录标题滚动
         let titles = document.getElementsByClassName('title')
-        let anchor = document.getElementsByClassName('anchor')
+        let anchor = document.getElementsByClassName('catalog-title')
         this.$refs.scroll.onscroll = function (e) {
           let { clientHeight, scrollTop, scrollHeight } = e.target || e.srcElement
           this.scrollTop = scrollTop
           this.clientHeight = clientHeight
           this.scrollHeight = scrollHeight
-
           // 给目录动态添加active类
           if (titles.length <= 0 || anchor.length <= 0) {
             return
           }
           for (let i = 0, len = anchor.length; i < len - 1; i++) {
             if (titles.length !== anchor.length) { // 等到目录的titles 和 anchor都加载完毕， 确保两个数组的长度是一致的
-              console.log(titles.length, anchor.length)
               break
             }
             // 遍历每一个anchor， 如果scrollTop 在 anchor[i].offsetTop 和 anchro[i+1].offsetTop 之间， 当前active标题为title[i]
             if (scrollTop >= anchor[i].offsetTop - 100 && scrollTop <= anchor[i + 1].offsetTop - 100) {
               titles[i].classList.add('active')
             } else {
-//              // console.log(titles[i].className)
               titles[i].classList.remove('active')
             }
           }

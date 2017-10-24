@@ -60,6 +60,8 @@ export const initCatalog = function initCatalog (el) { // 初始化文章目录�
     }
     if (hArr[i].tag === level2tag) {
       $2th.push(hArr[i]) // 如果当前标题2级标题， 那么将该2级标题push 到 $2th, 并且跳过后面的代码；如果下一个标题还是2级标题， 则继续push并跳过
+      hArr[i].el.classList.add('catalog-title')
+      hArr[i].el.classList.add('ct-level2')
       continue
     } else if (hArr[i].tag === level1tag) {
       // 动态确定第二层标题对应的标签 level2Tag； 可能是任何大于<h3>的标签， 如h4, h5, h6
@@ -71,6 +73,8 @@ export const initCatalog = function initCatalog (el) { // 初始化文章目录�
       }
       // console.log(level2tag, level1tag)
       obj.$1th = hArr[i]
+      hArr[i].el.classList.add('catalog-title')
+      hArr[i].el.classList.add('ct-level1')
       $2th = [] // 如果检测到1级的标题， 则置$2th 为空
     } else {
       // 第三级 及 深层次的目录标题直接忽略
