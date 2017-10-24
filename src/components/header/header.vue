@@ -1,6 +1,6 @@
 <template>
   <header id="header">
-    <div class="cover" :style="{backgroundImage: `url(${bgImg})`}"></div>
+    <div class="cover" :style="{backgroundImage: ``}"></div>
     <div class="logo" @click="goHome">MINGOF</div>
     <ul class="header-list">
       <router-link tag="li" to="/posts">

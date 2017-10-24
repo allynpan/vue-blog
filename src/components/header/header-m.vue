@@ -53,7 +53,7 @@
   #header {
     z-index: 1;
     /*box-shadow: 1px 0 3px 1px @background-base-dark;*/
-    position: fgitixed;
+    position: fixed;
     width: 100%;
     top: 0;
     background-color: @background-content;

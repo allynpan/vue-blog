@@ -9,6 +9,7 @@
         <li>没有工作的宅男属性的并且没有女朋友的前端菜狗</li>
         <li>TAG： 前端、吃狗粮infinitely、瘦、NO MONEY、need 关爱</li>
         <li>特长： (() => null)()</li>
+        <li><a href="/resume">简历 <--</a></li>
       </ul>
       <ul style="list-style: none">
         <li>copyright: nothing</li>

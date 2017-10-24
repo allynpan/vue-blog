@@ -14,7 +14,7 @@
     </div>
     <ul class="result">
       <li v-for="(item, index) in data" class="result-item">
-        <a :href="/#posts/ + item['_id']" @click="toArticle($event, item)">
+        <a :href="/mobile#posts/ + item['_id']" @click="toArticle($event, item)">
           <span class="result-item-title" v-html="highlights[index]"></span>
           <span class="result-item-time">{{new Date(item.time).toLocaleDateString()}}</span>
         </a>

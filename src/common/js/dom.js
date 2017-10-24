@@ -100,7 +100,12 @@ export const smoothScroll = (function () {
     speed += accelerate
     // console.log(this)
     clearTimeout(this.timer2)
-    let oScroll = el || this.$refs.scroll
+    let oScroll = el
+    if (!el && !!this && !!this._isVue && !!this.$refs && !!this.$refs.scroll) {
+      oScroll = this.$refs.scroll
+    } else {
+      el = document.documentElement || document.body
+    }
     // console.log(offsetTop, speed, adjust, el)
     if (!oScroll) {
       cb && cb({code: 1, err: 'can not find element to scroll'})

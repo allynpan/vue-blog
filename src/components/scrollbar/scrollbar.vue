@@ -1,7 +1,14 @@
 <template>
   <div class="scrollBar" ref="bar" :style="{'top': adjust + 'px'}">
     <!--<div class="scrollBar-thumb" :style="{height: thumbHeight, top: thumbTop, opacity: scrollTop <=0 ? 0 : 1}" draggable="true" ref="thumb"></div>-->
-    <div class="scrollBar-thumb" :style="{height: thumbHeight, top: thumbTop}" draggable="true" ref="thumb"></div>
+    <div
+      class="scrollBar-thumb"
+      :style="{height: thumbHeight, top: thumbTop}"
+      draggable="true" ref="thumb"
+      @mousedown="handleMouseDown($event)"
+      @mouseup="handleMouseUp($event)"
+    >
+    </div>
   </div>
 </template>
 
@@ -25,6 +32,11 @@
         default: 60 // header的高度
       }
     },
+    data () {
+      return {
+        lastY: 0
+      }
+    },
     computed: {
       thumbHeight () {
         return this.clientHeight / this.scrollHeight * this.clientHeight + 'px'
@@ -33,13 +45,14 @@
         return this.scrollTop / this.scrollHeight * this.clientHeight + 'px'
       }
     },
-    mounted () {
-      let _self = this
-      let thumb = this.$refs.thumb
-      thumb.onmousedown = function (e) {
+    methods: {
+      handleMouseDown (e) {
+        let _self = this
+        let thumb = e.target
         e.preventDefault()
         e.stopPropagation()
         let lastY = e.clientY // 记录上一次的Y值
+//        this.lastY = e.clientY
         thumb.style.borderRadius = 0
         document.onmousemove = function (e) {  // 为了防止鼠标移动过快而离开了thumb, 需要给整个document添加事件
           let diffY = e.clientY - lastY // 滚动条拖动的距离 = 当前Y值 - 上一次的Y值
@@ -54,15 +67,23 @@
           let newThumbTop = parseFloat(thumb.style.top) + diffY
           thumb.style.top = newThumbTop + 'px'
           let newScrollTop = newThumbTop / _self.clientHeight * _self.scrollHeight
-//          // // console.log(newScrollTop)
+            // // console.log(newScrollTop)
           _self.$emit('newScrollTop', newScrollTop)
-//          // // console.log(diffY)
+            // // console.log(diffY)
+          document.onmouseup = function (e) {
+            document.onmousemove = null
+            thumb.style.borderRadius = ''
+          }
         }
-      }
-      thumb.onmouseup = function (e) {
+      },
+      handleMouseUp (e) {
+        let thumb = e.target
         document.onmousemove = null
         thumb.style.borderRadius = ''
       }
+    },
+    mounted () {
+      let thumb = this.$refs.thumb
       document.onmouseup = function (e) {
         document.onmousemove = null
         thumb.style.borderRadius = ''

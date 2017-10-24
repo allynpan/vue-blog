@@ -99,13 +99,14 @@
           this.scrollTop = scrollTop
           this.clientHeight = clientHeight
           this.scrollHeight = scrollHeight
-//          // console.log(scrollTop, scrollHeight)
+
           // 给目录动态添加active类
           if (titles.length <= 0 || anchor.length <= 0) {
             return
           }
           for (let i = 0, len = anchor.length; i < len - 1; i++) {
             if (titles.length !== anchor.length) { // 等到目录的titles 和 anchor都加载完毕， 确保两个数组的长度是一致的
+              console.log(titles.length, anchor.length)
               break
             }
             // 遍历每一个anchor， 如果scrollTop 在 anchor[i].offsetTop 和 anchro[i+1].offsetTop 之间， 当前active标题为title[i]

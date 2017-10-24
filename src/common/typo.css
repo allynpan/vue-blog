@@ -261,7 +261,8 @@ strong, b {
 /* 保证块/段落之间的空白隔行 */
 .typo p, .typo pre, .typo ul, .typo ol, .typo dl, .typo form, .typo hr, .typo table,
 .typo-p, .typo-pre, .typo-ul, .typo-ol, .typo-dl, .typo-form, .typo-hr, .typo-table, blockquote {
-  margin-bottom: 1.2em
+  margin-bottom: 1.2em;
+  word-wrap: break-word;
 }
 
 h1, h2, h3, h4, h5, h6 {
