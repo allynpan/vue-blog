@@ -26,11 +26,11 @@
               v-for="(blog, index2) in item.blogs"
               v-if="blog.blogTitle"
           >
-            <a :href="'/mobile#posts/' + blog.blogid"
+            <router-link  :to="'/posts/' + blog.blogid"
                @click="toArticle($event, blog)"
             >
               {{blog.blogTitle}} <span>{{new Date(blog.blogTime).toLocaleDateString()}}</span>
-            </a>
+            </router-link>
           </li>
         </ul>
       </div>

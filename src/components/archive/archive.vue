@@ -6,7 +6,7 @@
         <ul class="all-tags-list">
           <li class="all-tags-item" v-for="(item, index) in formattedTags" v-show="formattedTags.length > 0">
             <a
-              :href="'/#/archive#' + item.tag"
+              :href="'/archive#' + item.tag"
               :style="{fontSize: 18 * (item.blogs.length / 10 + 1) <= 40 ? 18 * (item.blogs.length / 10 + 1) + 'px' : '40px'}"
               @click="scrollToAnchor($event, index)"
             >
@@ -22,11 +22,11 @@
               v-for="(blog, index2) in item.blogs"
               v-if="blog.blogTitle"
           >
-            <a :href="'/#posts/' + blog.blogid"
+            <router-link :to="'/posts/' + blog.blogid"
                @click="toArticle($event, blog)"
             >
               {{blog.blogTitle}} <span>{{new Date(blog.blogTime).toLocaleString()}}</span>
-            </a>
+            </router-link>
           </li>
         </ul>
       </div>
