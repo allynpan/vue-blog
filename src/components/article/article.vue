@@ -2,7 +2,7 @@
   <section class="article-detail" ref="scroll">
     <!--文章正文-->
     <article class="typo">
-      <div class="cover" :style="{backgroundImage: `url(${bgImg})`}"></div>
+      <div class="cover" :style="{backgroundImage: ``}"></div>
       <header>
         <h2>{{currentArticle && currentArticle.title}}</h2>
         <h4>{{currentArticle.time && new Date(currentArticle.time).toLocaleString()}}</h4>
@@ -201,7 +201,7 @@
     // padding: 0 @content-padding;
     margin: 0 auto;
     overflow-y: scroll;
-    // hide srocll bar
+    // 隐藏浏览器默认滚动条
     width: 100%;
     padding-right: 17px;
     article {

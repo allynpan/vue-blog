@@ -63,7 +63,9 @@
   #main {
 //    .fadeIn();
     max-width: @content-width;
-    margin: 0 auto; overflow: hidden;
+    margin: 0 auto;
+    // 隐藏浏览器默认滚动条
+    overflow: hidden;
     @media(min-width: 1600px) {
       max-width: @content-width-l;
     }
