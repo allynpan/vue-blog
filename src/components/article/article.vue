@@ -60,7 +60,7 @@
   import ScrollBar from '../../components/scrollbar/scrollbar'
   import BackTop from '../../components/back-top/back-top'
   import { initCatalog, smoothScroll } from '../../common/js/dom'
-  import { getArticles } from '@/api/api'
+//  import { getArticles } from '@/api/api'
   import Comment from '../../components/comment/comment'
   export default {
     data () {
@@ -80,8 +80,6 @@
       ])
     },
     mounted () {
-      this.setCATitle(this.$route.params.desc)  // 设置currentAritcleTitle， vuex 通过currentArticleTitle 计算出currentAritcle
-      this._getArticles()
       this.$nextTick(() => {
         // set section height
         let docH = document.documentElement.clientHeight
@@ -132,19 +130,6 @@
       this.timer = setTimeout(() => { this.catalog = initCatalog(this.$refs.content) }, 300)
     },
     methods: {
-      _getArticles () {
-        if (this.currentArticle['_id']) {
-          return
-        }
-        let desc = this.$route.params.desc
-        getArticles({blogId: desc})
-          .then(data => {
-            // console.log(data)
-            if (data.data && data.code === 0) {
-              this.setSingleArticle(data.data[0])
-            }
-          })
-      },
       changeScrollTop (newScrollTop) {
         this.scrollTop = newScrollTop
         this.$refs.scroll.scrollTop = newScrollTop
@@ -161,8 +146,7 @@
         smoothScroll.call(this, {offsetTop: 0, speed: 200})
       },
       ...mapMutations({
-        setCATitle: 'SET_CURRENT_ARTICLE_TITLE',
-        setSingleArticle: 'SET_SINGLE_ARTICLE'
+        setCATitle: 'SET_CURRENT_ARTICLE_TITLE'
       })
     },
     components: {
@@ -171,7 +155,8 @@
       Comment
     },
     watch: {
-      currentArticle () {
+      currentArticle (newVal) {
+        console.log(newVal)
         this.scrollTop = 0
         this.timer = setTimeout(() => { this.catalog = initCatalog(this.$refs.content) }, 300)
       }
@@ -180,8 +165,6 @@
       clearTimeout(this.timer)
     }
   }
-//  const Foo = () => Promise.resolve(article)
-//  export default Foo
 </script>
 <style lang="less" scoped>
   @import '../../common/less/variable';

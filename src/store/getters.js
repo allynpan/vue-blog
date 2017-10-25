@@ -6,16 +6,19 @@ export const currentArticleTitle = (state) => state.currentArticleTitle
 
 export const currentArticle = (state) => {
   // console.log(state.singleArticle)
-  if (state.singleArticle['_id']) {
-    return state.singleArticle
-  }
-  for (let i = 0, len = state.articles.length; i < len; i++) {
-    if (state.articles[i]['_id'] === state.currentArticleID || state.articles[i]['title'] === state.currentArticleTitle) {
-      return state.articles[i]
-    }
-  }
-  return {}
+  // if (state.singleArticle['_id']) {
+  //   console.log('haha')
+  //   return state.singleArticle
+  // }
+  // for (let i = 0, len = state.articles.length; i < len; i++) {
+  //   if (state.articles[i]['_id'] === state.currentArticleID || state.articles[i]['title'] === state.currentArticleTitle) {
+  //     return state.articles[i]
+  //   }
+  // }
+  return state.singleArticle
 }
+
+export const singleArticle = (state) => state.singleArticle
 
 export const bgImg = (state) => state.bgImg
 

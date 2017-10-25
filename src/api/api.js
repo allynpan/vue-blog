@@ -1,7 +1,7 @@
 import axios from 'axios'
 import HOST from './host'
 let progress = document.getElementById('progress')
-export const getArticles = function ({numPerPage, lastBlogId, currentPage, blogTitle, blogId}) {
+export const getArticles = function ({numPerPage, lastBlogId, currentPage, blogTitle, blogId, omit}) {
   return axios({
     url: `${HOST}/articles`,
     method: 'POST',
@@ -11,7 +11,8 @@ export const getArticles = function ({numPerPage, lastBlogId, currentPage, blogT
       lastID: lastBlogId,
       page: currentPage,
       title: blogTitle,
-      id: blogId
+      id: blogId,
+      omit: omit
     },
     onUploadProgress: () => {
       return

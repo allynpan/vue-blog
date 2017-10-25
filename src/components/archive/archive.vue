@@ -22,9 +22,7 @@
               v-for="(blog, index2) in item.blogs"
               v-if="blog.blogTitle"
           >
-            <router-link :to="'/posts/' + blog.blogid"
-               @click="toArticle($event, blog)"
-            >
+            <router-link :to="'/posts/' + blog.blogid">
               {{blog.blogTitle}} <span>{{new Date(blog.blogTime).toLocaleString()}}</span>
             </router-link>
           </li>
@@ -39,7 +37,7 @@
   </div>
 </template>
 <script>
-  import { getTags, getArticles } from '@/api/api'
+  import { getTags } from '@/api/api'
   import BackTop from '@/components/back-top/back-top'
   import { mapMutations } from 'vuex'
   import { smoothScroll } from '@/common/js/dom'
@@ -103,17 +101,6 @@
           }
         }
         return arr
-      },
-      toArticle (e, article) {
-        this.setSingleArticle('')
-        this.setTitle('')
-        getArticles({blogId: article.blogid})
-          .then(data => {
-            // // console.log(data)
-            if (data.code === 0) {
-              this.setSingleArticle(data.data[0])
-            }
-          })
       },
       backTop () {
         smoothScroll.call(this, {
