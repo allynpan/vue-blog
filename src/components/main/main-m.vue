@@ -45,6 +45,7 @@
     },
     methods: {
       _getArticles (obj) {
+        this.setLoading(true)
         return getArticles.call(this, obj)
           .then(data => {
 //            console.log(data)
@@ -52,11 +53,13 @@
               this.setArticles(data.data)
               this.setLastID(data.data[data.data.length - 1]['_id'])
               this.setCount(data.count)
+              this.setLoading(false)
             }
           })
       },
       _getSingleArticles () {
         // 请求单个文章， 当从标签页/archive或者搜索页/search 跳转到 /posts的时候使用
+        this.setLoading(true)
         this.setSingleArticle({})
         let desc = this.$route.params.desc
         getArticles.call(this, {blogId: desc})
@@ -64,6 +67,7 @@
             if (data.data && data.code === 0) {
               this.setSingleArticle(data.data[0])
             }
+            this.setLoading(false)
           })
       },
       ...mapMutations({
@@ -71,7 +75,8 @@
         setLastID: 'SET_LASTID',
         setCount: 'SET_COUNT',
         setPage: 'SET_CURRENT_PAGE',
-        setSingleArticle: 'SET_SINGLE_ARTICLE'
+        setSingleArticle: 'SET_SINGLE_ARTICLE',
+        setLoading: 'SET_LOADING'
       })
     },
     watch: {

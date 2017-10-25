@@ -53,7 +53,8 @@
       </div>
       <div class="next iconfont icon-pagination_arrow_r"
            @click="next"
-           title="下一页"></div>
+           title="下一页">
+      </div>
     </div>
   </section>
 </template>
@@ -76,7 +77,8 @@
         'articles',
         'count',
         'page',
-        'pageCount'
+        'pageCount',
+        'loading'
       ]),
       paginationWidth () {
         let value = (Math.ceil(this.pageCount / 5) - 1) * 40
@@ -121,8 +123,8 @@
       toPage (i) {
         this.setPage(i)
         window.sessionStorage.setItem('currentPage', i)
-        this.scrollTop = 0
-        this.$refs.scroll.scrollTop = 0
+//        this.scrollTop = 0
+//        this.$refs.scroll.scrollTop = 0
       },
       next () {
         if (this.page >= this.pageCount) return
@@ -145,6 +147,14 @@
         setLastID: 'SET_LASTID',
         setSingleArticle: 'SET_SINGLE_ARTICLE'
       })
+    },
+    watch: {
+      loading (flag) {
+        if (flag === false) {
+          this.scrollTop = 0
+          this.$refs.scroll.scrollTop = 0
+        }
+      }
     },
     destroyed () {
       clearTimeout(this.timer2)

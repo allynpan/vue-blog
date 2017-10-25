@@ -4,13 +4,20 @@
       <router-view v-if="$route.meta.keepAlive"></router-view>
     </keep-alive>
     <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <loading :loading="loading"></loading>
   </section>
 </template>
 <script>
   import { mapGetters, mapMutations } from 'vuex'
   import { getArticles } from '@/api/api'
+  import Loading from '../../components/loading/loading'
 
   export default {
+    data () {
+      return {
+        loading: false
+      }
+    },
     computed: {
       ...mapGetters([
         'page',
@@ -47,23 +54,31 @@
     },
     methods: {
       _getArticles (obj) {
+        this.loading = true
+        this.setLoading(true)
         getArticles.call(this, obj)
           .then(data => {
             if (data.data && data.code === 0) {
               this.setArticles(data.data)
               this.setLastID(data.data[data.data.length - 1]['_id'])
               this.setCount(data.count)
+              this.loading = false
+              this.setLoading(false)
             }
           })
       },
       _getSingleArticles () {
         // 请求单个文章， 当从标签页/archive或者搜索页/search 跳转到 /posts的时候使用
+        this.loading = true
+        this.setLoading(true)
         this.setSingleArticle({})
         let desc = this.$route.params.desc
         getArticles.call(this, {blogId: desc})
           .then(data => {
             if (data.data && data.code === 0) {
               this.setSingleArticle(data.data[0])
+              this.loading = false
+              this.setLoading(false)
             }
           })
       },
@@ -72,7 +87,8 @@
         setLastID: 'SET_LASTID',
         setCount: 'SET_COUNT',
         setPage: 'SET_CURRENT_PAGE',
-        setSingleArticle: 'SET_SINGLE_ARTICLE'
+        setSingleArticle: 'SET_SINGLE_ARTICLE',
+        setLoading: 'SET_LOADING'
       })
     },
     watch: {
@@ -92,6 +108,9 @@
         if (!newDesc) return
         this._getSingleArticles()
       }
+    },
+    components: {
+      Loading
     },
     destroyed () {
       clearTimeout(this.timer)

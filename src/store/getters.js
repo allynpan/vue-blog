@@ -34,4 +34,5 @@ export const pageCount = (state) => { // 分页数量 = 总数 / 每页显示数
   return Math.ceil(state.count / state.numPerPage)
 }
 
+export const loading = (state) => state.loading
 // export const singleArticle = state => state.singleArticle

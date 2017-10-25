@@ -50,7 +50,8 @@
         'articles',
         'count',
         'page',
-        'pageCount'
+        'pageCount',
+        'loading'
       ]),
       paginationWidth () {
         let value = (Math.ceil(this.pageCount / 5) - 1) * 40
@@ -86,14 +87,14 @@
       next () {
         if (this.page >= this.pageCount) return
         this.toPage(this.page + 1)
-        document.documentElement.scrollTop = 0
-        document.body.scrollTop = 0
+//        document.documentElement.scrollTop = 0
+//        document.body.scrollTop = 0
       },
       prev () {
         if (this.page <= 1) return
         this.toPage(this.page - 1)
-        document.documentElement.scrollTop = 0
-        document.body.scrollTop = 0
+//        document.documentElement.scrollTop = 0
+//        document.body.scrollTop = 0
       },
       togglePgOmit () {
         this.pgOmitIndex = this.pageCount
@@ -104,6 +105,14 @@
         setLastID: 'SET_LASTID',
         setSingleArticle: 'SET_SINGLE_ARTICLE'
       })
+    },
+    watch: {
+      loading (flag) {
+        if (flag === false) {
+          document.documentElement.scrollTop = 0
+          document.body.scrollTop = 0
+        }
+      }
     },
     destroyed () {
       clearTimeout(this.timer2)

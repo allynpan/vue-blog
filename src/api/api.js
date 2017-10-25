@@ -18,7 +18,7 @@ export const getArticles = function ({numPerPage, lastBlogId, currentPage, blogT
       return
     },
     onDownloadProgress: (event) => {
-      if (!this || !this._isVue) return
+      if (!this || !this._isVue || !progress) return
       this.$nextTick(() => {
         progress = !progress ? progress = document.getElementById('progress') : progress
         if (!progress || !this || !this._isVue) return

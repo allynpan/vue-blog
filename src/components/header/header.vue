@@ -1,7 +1,7 @@
 <template>
   <header id="header">
     <div class="cover" :style="{backgroundImage: ``}">
-      <div id="progress"></div>
+      <!--<div id="progress"></div>-->
     </div>
     <div class="logo" @click="goHome">MINGOF</div>
     <ul class="header-list">

@@ -156,7 +156,6 @@
     },
     watch: {
       currentArticle (newVal) {
-        console.log(newVal)
         this.scrollTop = 0
         this.timer = setTimeout(() => { this.catalog = initCatalog(this.$refs.content) }, 300)
       }

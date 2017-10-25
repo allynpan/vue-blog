@@ -6,6 +6,7 @@ const state = {
   currentPage: 1, // 当前分页
   numPerPage: 5, // 每页显示数量
   articles: [], // 浏览器初次加载、或者点击“文章”回到main.vue时使用该数据
-  singleArticle: {} // 跳过main.vue直接进入article.vue 时使用该数据
+  singleArticle: {}, // 跳过main.vue直接进入article.vue 时使用该数据
+  loading: false // 是否正在加载文章
 }
 export default state

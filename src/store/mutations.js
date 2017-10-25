@@ -27,6 +27,9 @@ const mutations = {
   },
   [TYPES.SET_SINGLE_ARTICLE] (state, article) {
     state.singleArticle = {...article}
+  },
+  [TYPES.SET_LOADING] (state, flag) {
+    state.loading = flag
   }
 }
 export default mutations
