@@ -19,17 +19,17 @@
         type: Number,
         default: 0
       },
-      clientHeight: { // .....的clienHeight
+      clientHeight: { // 与scrollBar 相绑定的需要滚动的div的的clientHeight
         type: Number,
         default: 0
       },
-      scrollHeight: { // ......scrollHeight
+      scrollHeight: { // 与scrollBar 相绑定的需要滚动的div的scrollHeight
         type: Number,
         default: 0
       },
       adjust: {
         type: Number,
-        default: 60 // header的高度
+        default: 60 // scrollbar的偏移量，这里是header的高度
       }
     },
     data () {
@@ -39,20 +39,22 @@
     },
     computed: {
       thumbHeight () {
+        // 初始化滚动条thumb的高度
         return this.clientHeight / this.scrollHeight * this.clientHeight + 'px'
       },
       thumbTop () {
+        // 初始化滚动条thumb的Top值
         return this.scrollTop / this.scrollHeight * this.clientHeight + 'px'
       }
     },
     methods: {
       handleMouseDown (e) {
+        // 拖动滚动条实现页面滚动
         let _self = this
         let thumb = e.target
         e.preventDefault()
         e.stopPropagation()
         let lastY = e.clientY // 记录上一次的Y值
-//        this.lastY = e.clientY
         thumb.style.borderRadius = 0
         document.onmousemove = function (e) {  // 为了防止鼠标移动过快而离开了thumb, 需要给整个document添加事件
           let diffY = e.clientY - lastY // 滚动条拖动的距离 = 当前Y值 - 上一次的Y值
@@ -67,9 +69,7 @@
           let newThumbTop = parseFloat(thumb.style.top) + diffY
           thumb.style.top = newThumbTop + 'px'
           let newScrollTop = newThumbTop / _self.clientHeight * _self.scrollHeight
-            // // console.log(newScrollTop)
           _self.$emit('newScrollTop', newScrollTop)
-            // // console.log(diffY)
           document.onmouseup = function (e) {
             document.onmousemove = null
             thumb.style.borderRadius = ''
