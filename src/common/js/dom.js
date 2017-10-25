@@ -98,9 +98,9 @@ export const smoothScroll = (function () {
     },
     cb  // 回调函数
   ) {
-    speed = speed || 50
-    adjust = adjust || 70
-    accelerate = accelerate || 5
+    speed = speed === undefined ? 50 : speed
+    adjust = adjust === undefined ? 70 : adjust
+    accelerate = accelerate === undefined ? 5 : accelerate
     speed += accelerate
     // console.log(this)
     clearTimeout(this.timer2)
