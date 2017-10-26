@@ -6,8 +6,9 @@
       @error="this.error"
       api_key="tmHRCivRggJ0fnbsBLg5JTUYIpgKPy3QevGkgYlCRw6kzSGruIPskuFmxe5yCiwc"
       :title="currentArticle.title"
-      shortname="mingof"
-      :url="'http://localhost:8080/post?id=' + currentArticle['_id']"
+      shortname="mingof-1"
+      :url="'https://blog.linyqiang.com/posts/' + currentArticle['_id']"
+      :resetTrigger="currentArticle['_id']"
     ></vue-disqus>
     <div v-if="!loading && !loadSuccess" style="padding: 20px;">
       加载评论失败，请确保当前网络能访问&nbsp;<a target="_blank" href="https://disqus.com">https://disqus.com</a>
@@ -18,7 +19,7 @@
   </div>
 </template>
 <script>
-  import VueDisqus from 'vue-disqus/VueDisqus.vue'
+  import VueDisqus from './VueDisqus.vue'
   export default {
     props: {
       currentArticle: {
