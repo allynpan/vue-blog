@@ -35,5 +35,10 @@ npm run dev
 
 # build for production with minification
 npm run build
-
 ```
+
+## 效果图
+
+![](http://7xoilf.com1.z0.glb.clouddn.com/vue-blog-readme_1.png)
+
+![](http://7xoilf.com1.z0.glb.clouddn.com/vue-blog-readme_2.png)
