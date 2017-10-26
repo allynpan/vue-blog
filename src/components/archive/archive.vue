@@ -1,46 +1,55 @@
 <template>
-  <div id="archive" ref="scroll">
-    <div class="content">
-      <div class="all-tags">
-        <h1>All Tags</h1>
-        <ul class="all-tags-list">
-          <li class="all-tags-item" v-for="(item, index) in formattedTags" v-show="formattedTags.length > 0">
-            <a
-              :href="'/archive#' + item.tag"
-              :style="{fontSize: 18 * (item.blogs.length / 10 + 1) <= 40 ? 18 * (item.blogs.length / 10 + 1) + 'px' : '40px'}"
-              @click="scrollToAnchor($event, index)"
+  <section id="archive-wrapper">
+    <div id="archive" ref="scroll">
+      <div class="content">
+        <div class="all-tags">
+          <h1>All Tags</h1>
+          <ul class="all-tags-list">
+            <li class="all-tags-item" v-for="(item, index) in formattedTags" v-show="formattedTags.length > 0">
+              <a
+                :href="'/archive#' + item.tag"
+                :style="{fontSize: 18 * (item.blogs.length / 10 + 1) <= 40 ? 18 * (item.blogs.length / 10 + 1) + 'px' : '40px'}"
+                @click="scrollToAnchor($event, index)"
+              >
+                {{item.tag}}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="each-tag" v-for="(item, index) in formattedTags" v-show="formattedTags.length > 0">
+          <h3 :name="item.tag" ref="tagTitle"># {{item.tag}}</h3>
+          <ul class="tag-article-list">
+            <li class="tag-article-item"
+                v-for="(blog, index2) in item.blogs"
+                v-if="blog.blogTitle"
             >
-              {{item.tag}}
-            </a>
-          </li>
-        </ul>
+              <router-link :to="'/posts/' + blog.blogid">
+                {{blog.blogTitle}} <span>{{new Date(blog.blogTime).toLocaleString()}}</span>
+              </router-link>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="each-tag" v-for="(item, index) in formattedTags" v-show="formattedTags.length > 0">
-        <h3 :name="item.tag" ref="tagTitle"># {{item.tag}}</h3>
-        <ul class="tag-article-list">
-          <li class="tag-article-item"
-              v-for="(blog, index2) in item.blogs"
-              v-if="blog.blogTitle"
-          >
-            <router-link :to="'/posts/' + blog.blogid">
-              {{blog.blogTitle}} <span>{{new Date(blog.blogTime).toLocaleString()}}</span>
-            </router-link>
-          </li>
-        </ul>
-      </div>
+      <back-top
+        :scrollHeight="scrollHeight"
+        :scrollTop="scrollTop"
+        @backTop="backTop"
+      ></back-top>
+      <scroll-bar
+        :scrollHeight="scrollHeight"
+        :scrollTop="scrollTop"
+        :clientHeight="clientHeight"
+        @newScrollTop = 'changeScrollTop'
+      ></scroll-bar>
     </div>
-    <back-top
-      :scrollHeight="scrollHeight"
-      :scrollTop="scrollTop"
-      @backTop="backTop"
-    ></back-top>
-  </div>
+  </section>
 </template>
 <script>
   import { getTags } from '@/api/api'
   import BackTop from '@/components/back-top/back-top'
   import { mapMutations } from 'vuex'
   import { smoothScroll } from '@/common/js/dom'
+  import ScrollBar from '@/components/scrollbar/scrollbar'
   export default {
     data () {
       return {
@@ -108,6 +117,10 @@
           speed: 200
         })
       },
+      changeScrollTop (newScrollTop) {
+        this.ScrollTop = newScrollTop
+        this.$refs.scroll.scrollTop = newScrollTop
+      },
       scrollToAnchor (e, index) {
         e.preventDefault()
         let anchor = this.$refs.tagTitle[index]
@@ -134,7 +147,8 @@
       }
     },
     components: {
-      BackTop
+      BackTop,
+      ScrollBar
     },
     destoryed () {
       clearTimeout(this.timer)
@@ -143,9 +157,15 @@
 </script>
 <style lang="less" scoped>
   @import '../../common/less/variable';
+  #archive-wrapper {
+    width: 100%;
+    overflow: hidden;
+  }
   #archive {
     .fadeIn();
     position: relative;
+    width: 100%;
+    padding-right: 17px;
     background-color: rgba(255, 255, 255, 0.8);
     height: 1000px;
     max-width: 100%;
