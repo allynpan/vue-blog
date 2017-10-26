@@ -1,30 +1,33 @@
-# blog
+# vue-blog
 
-> my private blog system
+> 采用 vue 全家桶构建的个人博客
 
-## Build Setup
+## 部分实现：
+
+[项目初始化](https://blog.linyqiang.com/posts/59eddd625413ff2f1876f10e)
+
+[Markdown渲染](https://blog.linyqiang.com/posts/59eddd685413ff2f1876f113)
+
+[文章article-list.vue和article.vue的实现](https://blog.linyqiang.com/posts/59f01e225413ff2f18776713)
+
+[自定义滚动条](https://blog.linyqiang.com/posts/59f032a05413ff2f18776b5a)
+
+[文章目录的实现](https://blog.linyqiang.com/posts/59f032a05413ff2f18776b5a)
+
+[后台搭建](https://blog.linyqiang.com/posts/59e99fba5413ff2f187616ed)
+
+## 使用方式
 
 ``` bash
-# install dependencies
+git clone https://github.com/MingOf/vue-blog
+
+cd vue-blog
+
 npm install
 
-# serve with hot reload at localhost:8080
 npm run dev
 
 # build for production with minification
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
