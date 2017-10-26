@@ -28,24 +28,23 @@
         required: false
       },
       title: {
-       type: String,
-       required: false
+        type: String,
+        required: false
       },
       remote_auth_s3: {
-       type: String,
-       required: false
+        type: String,
+        required: false
       },
       api_key: {
-       type: String,
-       required: false
+        type: String,
+        required: false
       },
       sso_config: {
         type: Object,
         required: false
       },
       resetTrigger: {
-        type: [String, Number, Boolean, Object, Array],
-        default: ''
+        type: [String, Number, Boolean, Object, Array]
       }
     },
     mounted () {
@@ -74,42 +73,42 @@
           config: function () {
             this.page.identifier = (self.identifier || self.$route.path || window.location.pathname)
             this.page.url = (self.url || self.$el.baseURI)
-            if (self.title){
-              this.page.title = self.title;
+            if (self.title) {
+              this.page.title = self.title
             }
-            if (self.remote_auth_s3){
-              this.page.remote_auth_s3 = self.remote_auth_s3;
+            if (self.remote_auth_s3) {
+              this.page.remote_auth_s3 = self.remote_auth_s3
             }
-            if (self.key){
-              this.page.api_key = self.key;
+            if (self.key) {
+              this.page.api_key = self.key
             }
-            if (self.sso_config){
-              this.sso = self.sso_config;
+            if (self.sso_config) {
+              this.sso = self.sso_config
             }
           }
         })
       },
       init () {
         const self = this
-        window.disqus_config = function() {
+        window.disqus_config = function () {
           this.page.identifier = (self.identifier || self.$route.path || window.location.pathname)
           this.page.url = (self.url || self.$el.baseURI)
-          if (self.title){
-            this.page.title = self.title;
+          if (self.title) {
+            this.page.title = self.title
           }
-          if (self.remote_auth_s3){
-            this.page.remote_auth_s3 = self.remote_auth_s3;
+          if (self.remote_auth_s3) {
+            this.page.remote_auth_s3 = self.remote_auth_s3
           }
-          if (self.api_key){
-            this.page.api_key = self.api_key;
+          if (self.api_key) {
+            this.page.api_key = self.api_key
           }
-          if (self.sso_config){
-            this.sso = self.sso_config;
+          if (self.sso_config) {
+            this.sso = self.sso_config
           }
         }
         setTimeout(() => {
           let d = document
-            , s = d.createElement('script')
+          let s = d.createElement('script')
           s.type = 'text/javascript'
           s.async = true
           s.setAttribute('id', 'embed-disqus')
