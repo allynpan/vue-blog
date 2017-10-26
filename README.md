@@ -16,6 +16,12 @@
 
 [后台搭建](https://blog.linyqiang.com/posts/59e99fba5413ff2f187616ed)
 
+## 后台代码
+
+后台管理界面：https://github.com/MingOf/vue-blog-admin
+
+Node.js接口：https://github.com/MingOf/vue-blog-backend
+
 ## 使用方式
 
 ``` bash
