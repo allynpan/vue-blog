@@ -14,7 +14,7 @@ import Search from '@/components/search/search'
 // import Header from '@/components/header/header'
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   mode: 'history',
   routes: [
     {
@@ -70,3 +70,11 @@ export default new Router({
     }
   ]
 })
+router.beforeEach(function (to, from, next) {
+  window.prerenderReady = false
+  next()
+})
+router.afterEach(function () {
+  window.prerenderReady = true
+})
+export default router

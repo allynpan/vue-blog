@@ -158,6 +158,13 @@
       currentArticle (newVal) {
         this.scrollTop = 0
         this.timer = setTimeout(() => { this.catalog = initCatalog(this.$refs.content) }, 300)
+        this.$nextTick(() => {
+          if (!newVal.title) return
+          let meta = document.getElementById('description')
+          document.title = 'MINGOF  --' + newVal.title
+          let metaContent = newVal.content.replace(/<\/?[^>]*>/g, '')
+          meta.content = metaContent.slice(0, 70) + '...'
+        })
       }
     },
     destroyed () {
