@@ -61,6 +61,7 @@
       }
     },
     mounted () {
+      window.prerenderReady = false
       this.init()
       this.$nextTick(() => {
         this._getTags()
@@ -109,6 +110,7 @@
             }
           }
         }
+        window.prerenderReady = true
         return arr
       },
       backTop () {
