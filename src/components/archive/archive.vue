@@ -169,7 +169,7 @@
     width: 100%;
     padding-right: 17px;
     background-color: rgba(255, 255, 255, 0.8);
-    height: 1000px;
+    height: 100%;
     max-width: 100%;
     margin: 0 auto; overflow: hidden;
     overflow-y: scroll;
